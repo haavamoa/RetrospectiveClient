@@ -1,0 +1,200 @@
+﻿<Controls:MetroWindow
+    x:Class="Retrospective.Clients.WPF.Views.ShellView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:converters="clr-namespace:Retrospective.Clients.WPF.Resources.Converters"
+    xmlns:Views="clr-namespace:Retrospective.Clients.WPF.Views"
+    xmlns:ViewModel="clr-namespace:Retrospective.Clients.WPF.ViewModel"
+    xmlns:ValueConverters="clr-namespace:Retrospective.Clients.WPF.Resources.Converters.ValueConverters"
+    xmlns:Configuration="clr-namespace:Retrospective.Clients.WPF.Views.Configuration"
+    xmlns:Resources="clr-namespace:Retrospective.Clients.WPF.Resources"
+    xmlns:Status="clr-namespace:Retrospective.Clients.WPF.Views.Status"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    mc:Ignorable="d"
+    Icon="../retrospective.ico"
+    Title="Retrospective Client"
+    DataContext="{Binding ShellViewModel, Source={StaticResource Locator}}"
+    mah:DialogParticipation.Register="{Binding .}"
+    >
+    <Controls:MetroWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary
+                    Source="/Views/Retrospective/RetroView.xaml" />
+                <ResourceDictionary
+                    Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Controls:MetroWindow.Resources>
+
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl x:Name="FlyOuts">
+            <Controls:Flyout x:Name="ConfigurationFlyOut"  DataContext="{Binding .}" IsOpen="{Binding UserConfigurationViewModel.IsOpen}" Header="User Configuration" Position="Right" Width="300">
+                <Configuration:UserConfigurationView/>
+            </Controls:Flyout>
+
+            <Controls:Flyout x:Name="StatusFlyOut" DataContext="{Binding .}" IsOpen="{Binding LogViewModel.IsOpen}" Header="Log" Position="Right" Width="Auto">
+                <Status:LogView />
+            </Controls:Flyout>
+
+            <Controls:FlyoutsControl.LayoutTransform>
+                <ScaleTransform
+                    CenterX="0"
+                    CenterY="0"
+                    ScaleX="{Binding ZoomViewModel.Zoomlevel}"
+                    ScaleY="{Binding ZoomViewModel.Zoomlevel}" />
+            </Controls:FlyoutsControl.LayoutTransform>
+        </Controls:FlyoutsControl>
+
+    </Controls:MetroWindow.Flyouts>
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <TextBlock
+                Text="{Binding ZoomViewModel.ZoomLevelPercentage, StringFormat={}Zoom: {0}%}"
+                VerticalAlignment="Center"
+                FontWeight="SemiBold" />
+            <Button
+                Background="Transparent"
+                BorderThickness="0"
+                Command="{Binding ZoomViewModel.ZoomInCommand}"
+                ToolTip="Zoom out">
+                <Rectangle
+                    Fill="White"
+                    Width="15"
+                    Height="15">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush
+                            Visual="{StaticResource appbar_magnify_add}"
+                            Stretch="Fill" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+            <Button
+                Background="Transparent"
+                BorderThickness="0"
+                Command="{Binding ZoomViewModel.ZoomOutCommand}"
+                ToolTip="Zoom out">
+                <Rectangle
+                    Fill="White"
+                    Width="15"
+                    Height="15">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush
+                            Visual="{StaticResource appbar_magnify_minus}"
+                            Stretch="Fill" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
+            <Button
+                Background="Transparent"
+                BorderThickness="0"
+                Command="{Binding UserConfigurationViewModel.OpenConfigurationCommand}"
+                ToolTip="Open configuration">
+                <StackPanel Orientation="Horizontal">
+                <Rectangle
+                    Visibility="{Binding UserConfigurationViewModel.UserConfiguration.IsAllRequiredSet, Converter={ValueConverters:BooleanToVisibilityConverter Inverted=True}}"
+                    x:Name="ConfigurationWarningRectangle"
+                    Fill="{x:Static Resources:w3schoolsColorsTrends.CherryTomato}"
+                    Margin="5"
+                    Width="15"
+                    Height="15"
+                    >
+                    <Rectangle.OpacityMask>
+                        <VisualBrush
+                            Visual="{StaticResource appbar_warning}"
+                            Stretch="Fill" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+
+                <Rectangle
+                    Fill="White"
+                    Width="15"
+                    Height="15">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush
+                            Visual="{StaticResource appbar_settings}"
+                            Stretch="Fill" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+                </StackPanel>
+            </Button>
+
+            
+                <Button
+                Background="Transparent"
+                BorderThickness="0"
+                Command="{Binding LogViewModel.OpenLogCommand}"
+                ToolTip="Log entries">
+                    <Controls:Badged Badge="{Binding LogViewModel.NumberOfLogEntries}" BadgePlacementMode="TopLeft">
+                    <Rectangle
+                        Fill="White"
+                        Width="15"
+                        Height="15">
+                        <Rectangle.OpacityMask>
+                            <VisualBrush
+                                Visual="{StaticResource appbar_message}"
+                                Stretch="Fill" />
+                        </Rectangle.OpacityMask>
+                    </Rectangle>
+                    </Controls:Badged>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
+            <RowDefinition
+                Height="*" />
+        </Grid.RowDefinitions>
+
+        <Border
+            x:Name="HeaderBorder"
+            Grid.Row="0"
+            BorderThickness="0,0,0,2"
+            BorderBrush="{DynamicResource AccentColorBrush}"
+            Padding="3"
+            >
+            <StackPanel
+                    VerticalAlignment="Top"
+                    Margin="5,0,0,0"
+                    >
+                <TextBlock
+                        Margin="0,0,0,-10"
+                        Text="{Binding UserConfigurationViewModel.UserConfiguration.TeamConfiguration.Name.Value}"
+                        FontSize="13"
+                        HorizontalAlignment="Left"
+                        Opacity=".5"
+                        FontWeight="SemiBold"
+                        Visibility="{Binding UserConfigurationViewModel.UserConfiguration.TeamConfiguration.Name.Value, Converter={ValueConverters:NullToVisibilityConverter}}" />
+                <TextBlock
+                        Margin="0,0,0,0"
+                        HorizontalAlignment="Left"
+                        FontSize="24"
+                        Text="Retrospective"
+                        FontWeight="SemiBold" />
+            </StackPanel>
+        </Border>
+
+        <Controls:TransitioningContentControl
+            mah:DialogParticipation.Register="{Binding RetroViewModel}"
+            Grid.Row="1"
+            Transition="Left"
+            IsEnabled="{Binding UserConfigurationViewModel.UserConfiguration.IsAllRequiredSet}"
+            Content="{Binding RetroViewModel}"
+            ContentTemplate="{StaticResource RetrospectiveDatatemplate}"
+            Margin="5" />
+
+        <Grid.LayoutTransform>
+            <ScaleTransform
+                CenterX="0"
+                CenterY="0"
+                ScaleX="{Binding ZoomViewModel.Zoomlevel}"
+                ScaleY="{Binding ZoomViewModel.Zoomlevel}" />
+        </Grid.LayoutTransform>
+    </Grid>
+</Controls:MetroWindow>
