@@ -13,12 +13,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{9205
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Retrospective.Clients.WPF", "Retrospective.Clients.WPF\Retrospective.Clients.WPF.csproj", "{14807EB6-1553-4248-B88E-09A835E09C16}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "..\build\_build.csproj", "{7B1ED17C-4C89-4B65-8D03-B063301FC492}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B1ED17C-4C89-4B65-8D03-B063301FC492}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B1ED17C-4C89-4B65-8D03-B063301FC492}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B9C9F86-50CD-4BD6-92EB-E75DA066B793}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1B9C9F86-50CD-4BD6-92EB-E75DA066B793}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B9C9F86-50CD-4BD6-92EB-E75DA066B793}.Release|Any CPU.ActiveCfg = Release|Any CPU
