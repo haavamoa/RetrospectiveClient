@@ -6,7 +6,6 @@ namespace Retrospective.Clients.WPF.Configuration.Interfaces
     public interface ISlackConfiguration : ITopLevelConfiguration
     {
         IConfigurationValue WebHook { get; set; }
-        bool IsAllRequiredSet { get; }
         IConfigurationValue AnnouncementMessage { get; set; }
     }
 

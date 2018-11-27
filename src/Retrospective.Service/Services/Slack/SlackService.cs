@@ -42,7 +42,7 @@ namespace Retrospective.Service.Services.Slack
 
             var response = await httpClient.PostAsync(webHook, content, token);
 
-            return response.StatusCode == HttpStatusCode.OK;
+            return response.IsSuccessStatusCode;
         }
 
         private static StringContent SerializeAndCreateStringContent(SlackMessage slackMessage)
@@ -94,7 +94,7 @@ namespace Retrospective.Service.Services.Slack
 
             var response = await httpClient.PostAsync(webHook, content, token);
 
-            return response.StatusCode == HttpStatusCode.OK;
+            return response.IsSuccessStatusCode;
         }
     }
 }
