@@ -224,10 +224,6 @@ namespace Retrospective.Clients.WPF.ViewModel
                 {
                     m_cancellationTokenSource = new CancellationTokenSource();
                 }
-
-                var positives = new List<Positive>();
-                var negatives = new List<Negative>();
-                var actions = new List<Action>();
                 m_retro = new Retro(Guid.NewGuid()) { StartTime = DateTime.Now, Writer = m_writer };
 
                 var dialogMessageResult = await m_dialogCoordinator.ShowMessageAsync(
@@ -261,16 +257,6 @@ namespace Retrospective.Clients.WPF.ViewModel
                             await progressDialogController.CloseAsync();
                             m_logger.Log<Info>("Retro was announced to Slack");
                         }
-
-                        PositivesViewModel.Initialize(positives);
-                        NegativesViewModel.Initialize(negatives);
-                        ActionsViewModel.Initialize(actions);
-                        RaisePropertyChanged(() => PositivesViewModel);
-                        RaisePropertyChanged(() => NegativesViewModel);
-                        RaisePropertyChanged(() => ActionsViewModel);
-                        IsStarted = true;
-                        m_logger.Log<Info>("Retro was succesfully started");
-                        ModelChanged();
                     }
                     catch (Exception e)
                     {
@@ -294,9 +280,20 @@ namespace Retrospective.Clients.WPF.ViewModel
                         }
 
                         await ShowGenericErrorMessage();
-                        m_logger.Log<Error>(e.Message);
+                        throw;
                     }
                 }
+
+                PositivesViewModel.Initialize(new List<Positive>());
+                NegativesViewModel.Initialize(new List<Negative>());
+                ActionsViewModel.Initialize(new List<Action>());
+                RaisePropertyChanged(() => PositivesViewModel);
+                RaisePropertyChanged(() => NegativesViewModel);
+                RaisePropertyChanged(() => ActionsViewModel);
+                IsStarted = true;
+                m_logger.Log<Info>("Retro was succesfully started");
+                ModelChanged();
+
             }
             catch (Exception e)
             {
