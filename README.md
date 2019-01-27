@@ -7,20 +7,20 @@ A windows client to use during a retrospective meeting.
 Main features:
 
 - Announce on Slack when the retrospective has started.
-- Deliver a easy way of creating notes from the outcome of the meeting (positives, negatives and actions).
+- Deliver an easy way of creating notes from the outcome of the meeting (positives, negatives and actions).
 - Deliver a summary of the meeting on Slack.
-- Configurable (Team Name, Announcement Message ... etc)
+- Configurable (Team Name, Announcement Message, etc.).
 
 ## **Requirements**
 
 - Windows.
-- A Slack Webhook (required from you're Slack administrator).
+- A Slack Webhook (required from your Slack administrator).
 - .NET Core SDK.
-- Nuke Build, see <https://nuke.build/docs/getting-started/setup.html>
+- Nuke Build, see <https://nuke.build/docs/getting-started/setup.html>.
 
 ## **The idea**
 
-The idea behind creating a application like this was that I got tired of keeping notes of my retrospectives. I used to start up my favorite editor, create three headers for positives notes, negatives notes and actions and start taking notes when we were having the meeting. When the meeting was over, I used to save this locally and share it with my colleagues.
+The idea behind creating a application like this was that I got tired of keeping notes of my retrospectives. I used to start up my favorite editor, create three headers for positives notes, negatives notes, and actions and start taking notes when we were having the meeting. When the meeting was over, I used to save this locally and share it with my colleagues.
 
 We finally started using Slack. My workflow was still somewhat the same, but now I did not have to save it locally, and we now had one place to share the notes afterwards.
 
@@ -36,11 +36,11 @@ After cloning, do the following:
 - Run `nuke`
   - Let it compile the solution
 - Go to `\src\Retrospective.Clients.WPF\bin\Debug` and start `Retrospective.Clients.WPF.exe`
-- Copy the folder `Debug` folder to whatever place you want and create a shurtcut of the `.exe`
+- Copy the folder `Debug` folder to whatever place you want and create a shortcut of the `.exe`
 
 ## **Screenshots / GIFs**
 
-### *Startup screen to start a retrospective and the dialog to choose wheter or not to announce the retrospective.Requires a nickname of the writer of the retrospective.*
+### *Startup screen to start a retrospective and the dialog to choose whether or not to announce the retrospective.Requires a nickname of the writer of the retrospective.*
 
 ![startingretro]
 
@@ -56,7 +56,7 @@ After cloning, do the following:
 
 ![retrosummary]
 
-Remarks: The application might have changed since theese screenshots / gifs were taken, but I hope that they provide a basic feeling of the flow of the application.
+Remarks: The application might have changed since these screenshots / gifs were taken, but I hope that they provide a basic feeling of the flow of the application.
 The gifs also have some awkward rendering issues.
 
 [logo]: src/Retrospective.Clients.WPF/retrospective.ico
