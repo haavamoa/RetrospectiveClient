@@ -11,6 +11,8 @@ Main features:
 - Deliver a summary of the meeting on Slack.
 - Configurable (Team Name, Announcement Message, etc.).
 
+> See [releases](https://github.com/haavamoa/RetrospectiveClient/releases) to download latest release
+
 ## **Requirements**
 
 - Windows.
