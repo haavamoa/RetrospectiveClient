@@ -1,5 +1,7 @@
 # **Retrospective Client**
 
+[![Build Status](https://dev.azure.com/havardmoas/HaavamoaProjects/_apis/build/status/haavamoa.RetrospectiveClient?branchName=master)](https://dev.azure.com/havardmoas/HaavamoaProjects/_build/latest?definitionId=8&branchName=master)
+
 ![Retrospective Client][logo]
 
 A windows client to use during a retrospective meeting.
