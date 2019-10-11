@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  IgnorableNamespaces="uap rescap">
+
+  <Identity
+    Name="RetrospectiveClient"
+    Publisher="CN=hmo"
+    Version="1.0.0.0" />
+
+  <Properties>
+    <DisplayName>RetrospectiveClient</DisplayName>
+    <PublisherDisplayName>haavamoa</PublisherDisplayName>
+    <Logo>Images\RetrospectiveClient.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
+    <TargetDeviceFamily Name="Windows.Desktop" MinVersion="10.0.14393.0" MaxVersionTested="10.0.14393.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="x-generate"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="App"
+      Executable="$targetnametoken$.exe"
+      EntryPoint="$targetentrypoint$">
+      <uap:VisualElements
+        DisplayName="RetrospectiveClient"
+        Description="A windows client to use during a teams retrospective meeting. This applicaiton has the ability to post a retrospective summary to a Slack channel. It also delivers a easy way of writing the summary, with columns of positive, negative and actions."
+        BackgroundColor="transparent"
+        Square150x150Logo="Images\RetrospectiveClientMedium.png"
+        Square44x44Logo="Images\RetrospectiveClientAppIcon.png">
+        <uap:DefaultTile Wide310x150Logo="Images\RetrospectiveClientWide.png"  Square71x71Logo="Images\RetrospectiveClientSmall.png" Square310x310Logo="Images\RetrospectiveClientLarge.png"/>
+        <uap:SplashScreen Image="Images\RetrospectiveClientSplash.png" />
+        <uap:LockScreen BadgeLogo="Images\RetrospectiveClientBadge.png" Notification="badge"/>
+      </uap:VisualElements>
+    </Application>
+  </Applications>
+
+  <Capabilities>
+    <Capability Name="internetClient" />
+    <rescap:Capability Name="runFullTrust" />
+  </Capabilities>
+</Package>
