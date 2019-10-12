@@ -24,6 +24,7 @@ namespace Retrospective.Service.Repositories
 
         public async Task Create(Retro retro)
         {
+            EnsureJsonPathExists();
             var json = JsonConvert.SerializeObject(retro);
             var filepathWithFileName =
                 $"{Configuration.PathForJsonFiles}/{Configuration.JsonFilesPrefix}-{retro.EndTime.ToString(Configuration.JsonDateFormat)}.json";
@@ -38,6 +39,14 @@ namespace Retrospective.Service.Repositories
                 var encoded = Encoding.ASCII.GetBytes(json);
                 await fs.WriteAsync(encoded, 0, encoded.Length);
                 m_retroJsonpathDictionary.Add(retro.Id, filepathWithFileName);
+            }
+        }
+
+        private void EnsureJsonPathExists()
+        {
+            if (!Directory.Exists(Configuration.PathForJsonFiles))
+            {
+                Directory.CreateDirectory(Configuration.PathForJsonFiles);
             }
         }
 

@@ -12,20 +12,13 @@ namespace Retrospective.Service.Repositories
         public JsonRepositoryConfiguration()
         {
             JsonFilesPrefix = "retro";
-            PathForJsonFiles = CurrentApplicationDirectory();
+            PathForJsonFiles = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)+"/Retrospectives";
             JsonDateFormat = "yy.dd.MM";
-        }
-
-        private static string CurrentApplicationDirectory()
-        {
-            var codeBase = Assembly.GetExecutingAssembly().Location;
-            var fileinfo = new FileInfo(codeBase);
-            return fileinfo.DirectoryName;
         }
 
         /// <summary>
         /// Path to save the retrospective json
-        /// <remarks>Defaults is directory of application</remarks>
+        /// <remarks>Defaults is %APPDATA%/Roaming/Retrospectives/</remarks>
         /// </summary>
         public string PathForJsonFiles { get; set; }
 
