@@ -1,0 +1,28 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ViewModel="clr-namespace:Retrospective.Clients.WPF.ViewModel"
+    xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:ViewModel1="clr-namespace:RetrospectiveClient.ViewModel"
+    xmlns:ValueConverters="clr-namespace:RetrospectiveClient.Resources.Converters.ValueConverters"
+    mc:Ignorable="d">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="../Configuration/ConfigurationViewResources.xaml" />
+        <ResourceDictionary
+            Source="RetroNotStartedView.xaml" />
+        <ResourceDictionary
+            Source="RetroStartedView.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+    <DataTemplate
+        x:Key="RetrospectiveDatatemplate"
+        DataType="{x:Type ViewModel1:RetroViewModel}">
+        <Grid>
+            <mah:TransitioningContentControl Transition="Left" ContentTemplate="{StaticResource RetroNotStartedDataTemplate}" x:Name="RetroNotStartedContentPresenter" Visibility="{Binding IsStarted, Converter={ValueConverters:BooleanToVisibilityConverter Inverted=True}}" Content="{Binding .}" />
+            <mah:TransitioningContentControl Transition="Left" ContentTemplate="{StaticResource RetroStartedDataTemplate}" Visibility="{Binding ElementName=RetroNotStartedContentPresenter, Path=Visibility, Converter={ValueConverters:VisibilityConverter}}" Content="{Binding .}" />
+        </Grid>
+    </DataTemplate>
+</ResourceDictionary>

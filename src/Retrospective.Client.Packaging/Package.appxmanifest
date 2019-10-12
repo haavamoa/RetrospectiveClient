@@ -7,13 +7,13 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="RetrospectiveClient"
-    Publisher="CN=hmo"
-    Version="1.0.0.0" />
+    Name="19822HvardMos.RetrospectiveClient"
+    Publisher="CN=5773A8A0-89B0-4E5E-A358-F6AD9637367C"
+    Version="1.0.11.0" />
 
   <Properties>
     <DisplayName>RetrospectiveClient</DisplayName>
-    <PublisherDisplayName>haavamoa</PublisherDisplayName>
+    <PublisherDisplayName>Håvard Moås</PublisherDisplayName>
     <Logo>Images\RetrospectiveClient.png</Logo>
   </Properties>
 
