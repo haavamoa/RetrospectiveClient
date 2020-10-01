@@ -38,6 +38,7 @@ namespace RetrospectiveClient.ViewModel
         public void OnRetroCancelled()
         {
             RetroViewModel.Initialize(this, LogViewModel);
+
             RaisePropertyChanged(string.Empty);
         }
 
@@ -50,6 +51,7 @@ namespace RetrospectiveClient.ViewModel
         public async Task Initialize()
         {
             var progressDialog = await m_dialogCoordinator.ShowProgressAsync(this, "Initializing Retrospecive Client", "Initializing Retrospecive Client...");
+
             progressDialog.SetProgress(0);
             try
             {
@@ -68,7 +70,9 @@ namespace RetrospectiveClient.ViewModel
                 progressDialog.SetProgress(0.66);
 
                 progressDialog.SetMessage("Preparing retrospective");
+
                 RetroViewModel.Initialize(this, LogViewModel);
+
                 RaisePropertyChanged(() => RetroViewModel);
                 progressDialog.SetProgress(1);
             }
